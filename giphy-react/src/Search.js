@@ -1,25 +1,27 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-class Search extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            term: '',
-        }
-    }
-
-        onInputChange(term) {
-            this.setState({term});
-            this.props.onTermChange(term);
-        }
-
-        render() {
+class Search extends Component {
+    render(){
+        const Search = this.props.gifs.map((image)  => {
+            console.log(image)
+            console.log(image.images.fixed_height.url)
             return (
-                <div className="search">
-                    <input onChange={event => this.onInputChange(event.target.value)} />
+                <div>
+                <img 
+                    key={image.id}
+                    src={image.images.fixed_height.url}
+                />
                 </div>
             );
-        }
+            } ) 
+        return (
+            <div>
+                <ul>
+                    {Search}
+                </ul>
+            </div>
+        )
     }
+}
 
 export default Search;
